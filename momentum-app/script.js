@@ -10,6 +10,43 @@
  *  Weather api source: https://api.openweathermap.org/data/2.5/weather?       *
  * *****************************************************************************/
 
+/**********************Function for Intro and greeting***********************/
+
+function greet() {
+    let startButton = document.getElementById("start-button");
+    let greetDisplay = document.getElementById("greeting");
+    let introContainer = document.getElementById("intro");
+    let chronoDisp = document.getElementById("chrono");
+    let timeGreet = ["Good Morning, ", "Good Afternoon, ", "Good Evening, "];
+    let statement = "";
+    let timeToday = new Date();
+    //get individual values.
+    let hr = timeToday.getHours();
+
+    if (hr < 12) {
+        statement = timeGreet[0];
+    }
+    else if (hr >= 12 || hr < 6) {
+        statement = timeGreet[1];
+    }
+    else {
+        statement = timeGreet[2];
+    }
+
+    startButton.onclick = () => {
+        if (document.getElementById("name").value === "") {
+            alert("Please enter your name.");
+        }
+        introContainer.style.display = "none";
+        chronoDisp.style.display = "flex";
+        greetDisplay.innerHTML = statement + document.getElementById("name").value;
+    }
+}
+
+greet();
+
+//------------------End of Script for intro and greeting----------------------//
+
 /**********************Script for displaying time and date**********************/
 
 setInterval(displayTime, 1000);
@@ -25,6 +62,7 @@ function displayTime() {
     hr = hr < 10? "0" + hr : hr;
     min = min < 10? "0" + min : min;
     sec = sec < 10? "0" + sec : sec;
+
     //Time display is in 24hr format.
     timeDisplay.innerHTML = hr + ':' + min + ':' + sec;
 }
@@ -51,7 +89,7 @@ displayDate();
 
 function displayImg() {
     let images = document.getElementById("chrono");
-    let imgSelection = ["url('images/hammock.jpg')", "url('images/pebbles.jpg')", "url('images/two chairs.jpg')", "url('images/girl.jpg')"];
+    let imgSelection = ["url('images/hammock.jpg')", "url('images/pebbles.jpg')", "url('images/two chairs.jpg')", "url('images/girl.jpg')", "url('images/river.jpg')", "url('images/three chairs.jpg')"];
     let num = 0;
     let numImg = imgSelection.length;
 
