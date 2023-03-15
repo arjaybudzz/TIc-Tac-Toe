@@ -1,0 +1,237 @@
+body {
+    -webkit-tap-highlight-color: rgb(0, 0, 0, 0);
+    -webkit-tap-highlight-color: transparent;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+
+#weather {
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+    position: fixed;
+    align-items:start;
+    width: 23%;
+    height: 30%;
+    font-size: 20px;
+    margin-bottom: 35%;
+    padding-left: 1%;
+}
+
+#weather-icon-container {
+    display: flex;
+}
+
+#weather-icon {
+    width: 100%;
+    height: 100%;
+    padding-top: 13%;
+}
+
+#weather-details {
+    display: flex;
+}
+
+.desc, #location {
+    font-size: 25px;
+}
+
+#sun-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#chrono {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: fixed;
+    align-items: center;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-image: url(images/hammock.jpg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    transition: all 5s;
+}
+
+#chrono-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-color: rgba(0, 0, 0, 0.3);
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    color: white;
+    font-family: Verdana;
+    font-weight:lighter;
+}
+
+#date {
+    display: flex;
+    justify-content: center;
+    font-size: 60px;
+}
+
+#time {
+    display: flex;
+    justify-content: center;
+    font-size: 80px;
+}
+
+#to-do-list {
+    display: flex;
+    position: absolute;
+    width: 20%;
+    height: 5%;
+    transition: 90ms all;
+}
+
+#to-do-list:active {
+    cursor: pointer;
+}
+
+.header {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    width: 25%;
+    height: 8%;
+    background-color: black;
+}
+
+.header::after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+.add {
+    display: flex;
+    width: 30%;
+    height: 100%;
+    font-size: 150%;
+    border: none;
+    background-color: black;
+    color: white;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.add:hover {
+    background-color: rgb(63, 63, 63);
+}
+
+.add:active {
+    background-color: rgb(85, 85, 85);
+}
+
+#task-input {
+    width: 90%;
+    height: 80%;
+    background-color: rgba(255, 255, 255, 0);
+    border-style: hidden;
+    font-family: Verdana;
+    font-size: 20px;
+    align-self:center;
+    text-align: left;
+    text-indent: 5%;
+    color: white;
+    text-decoration: none;
+}
+
+#task-input:focus {
+    outline: none;
+}
+
+#to-do-list-text {
+    font-size: 20px;
+    margin: 10px;
+}
+
+ul {
+    margin-top: 65px;
+    padding: 0;
+}
+
+ul li {
+    cursor: pointer;
+    position: relative;
+    padding: 8px 200px 8px 20px;
+    background: black;
+    font-size: 18px;
+    transition: 0.2s;
+    list-style-type: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+ul li:nth-child(odd) {
+    background: rgba(0, 0, 0, 0.60);
+}
+
+ul li:hover {
+    background: rgba(0, 0, 0, 0.3);
+}
+
+ul li.checked {
+    background: black;
+    color: #fff;
+    text-decoration: line-through;
+}
+
+ul li.checked::before {
+    content: '';
+    position: absolute;
+    border-color: #fff;
+    border-style: solid;
+    border-width: 0 2px 2px 0;
+    top: 10px;
+    left: 16px;
+    transform: rotate(45deg);
+    height: 15px;
+    width: 7px;
+}
+
+.close {
+    position: absolute;
+    right: 0;
+    top: 0;
+    padding: 6px 10px;
+}
+
+.close:hover {
+    background-color: #f44336;
+    color: white;
+}
+
+
+#quotes {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: 5s all;
+}
+
+#quote-text {
+    font-size: 30px;
+    font-style: italic;
+}
+

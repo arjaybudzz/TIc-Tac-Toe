@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>Momentum App</title>
+        <link rel="stylesheet" href="style.css"/>
+    </head>
+    <body>
+        <script defer src="script.js"></script>
+        <script defer src="weather.js"></script>
+        <div id="background">
+            <div id="chrono">
+                <div id="chrono-container">
+                    <div id="weather">
+                        <div id="weather-icon-container">
+                            <img src="" id="weather-icon"/>
+                        </div>
+                        <div id="location">Unable to get location</div>
+                            <div class="desc">
+                                No information available.
+                            </div>
+                            <div class="weather-details">
+                                <div class="celsius">Error</div>
+                            </div>
+                            <div class="sun-info">
+                                <h4>Sunrise: <span class="sunrise">No data available.
+                                    </span>
+                                </h4>
+                                <h4>Sunset: <span class="sunset">No data available.
+                                    </span>
+                                </h4>
+                            </div>
+                    </div>
+                    <div id="to-do-list">
+                        <div id="header-container" class="header">
+                            <p id="to-do-list-text">To do List</p>
+                            <input type="text" id="task-input" placeholder="type your task here..."/>
+                            <span class="add">+</span>
+                        </div>
+                        <ul id="task-lists">
+
+                        </ul>
+                    </div>
+                    <div id="date"></div>
+                    <div id="time"></div>
+                    <div id="quotes">
+                        <p id="quote-text">"Don't stop just because you're tired, stop when you're done."</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
