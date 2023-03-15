@@ -8,6 +8,7 @@
  *  2. The javascript code for weather api is in a different file named        *
  *  weather.js.                                                                *
  *  Weather api source: https://api.openweathermap.org/data/2.5/weather?       *
+ *                  THIS IS A WORK IN PROGRESS                                 *
  * *****************************************************************************/
 
 /**********************Function for Intro and greeting***********************/

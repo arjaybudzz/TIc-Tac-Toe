@@ -21,8 +21,6 @@ window.addEventListener('load', () => {
 
             const base = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${long}&appid=${api}`;
 
-
-
             console.log(base);  //This helps to access full weather data at the console.
             fetch(base).then((response) => {
                 return response.json();
@@ -35,7 +33,6 @@ window.addEventListener('load', () => {
                 const {sunrise, sunset} = getData.sys;
 
                 const iconUrl = `https://openweathermap.org/img/wn/${icon}@2x.png`;
-
 
                 const sunriseGMT = new Date(sunrise * 1000); //Convert sunrise time from Epoch to GMT
                 const sunsetGMT = new Date(sunset * 1000);  //Convert sunset time from Epoch to GMT
