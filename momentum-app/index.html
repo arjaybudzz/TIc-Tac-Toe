@@ -8,10 +8,11 @@
     <body>
         <script defer src="script.js"></script>
         <script defer src="weather.js"></script>
+        <script defer src="localstorage.js"></script>
         <div id="background">
             <div id="intro">
                 <h1>Please Enter Your Name</h1>
-                <input type="text" id="name"/>
+                <input type="text" id="name" maxlength="30"/>
                 <button type="submit" id="start-button">Get Started</button>
             </div>
             <div id="chrono">
@@ -39,7 +40,7 @@
                     <div id="to-do-list">
                         <div id="header-container" class="header">
                             <p id="to-do-list-text">To do List</p>
-                            <input type="text" id="task-input" placeholder="type your task here..."/>
+                            <input type="text" id="task-input" placeholder="type your task here..." maxlength="40"/>
                             <span class="add">+</span>
                         </div>
                         <ul id="task-lists">

@@ -231,7 +231,7 @@ ul {
 ul li {
     cursor: pointer;
     position: relative;
-    padding: 8px 200px 8px 20px;
+    padding: 8px 200px 8px 35px;
     background: black;
     font-size: 18px;
     transition: 0.2s;
