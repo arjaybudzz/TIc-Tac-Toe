@@ -7,6 +7,7 @@
  *  features like it can be dragged anywhere.                                  *
  *  2. The javascript code for weather api is in a different file named        *
  *  weather.js.                                                                *
+ *  3. Local Storage Utilization is now included.                              *
  *  Weather api source: https://api.openweathermap.org/data/2.5/weather?       *
  *                  THIS IS A WORK IN PROGRESS                                 *
  * *****************************************************************************/
@@ -21,16 +22,17 @@ function greet() {
     let timeGreet = ["Good Morning, ", "Good Afternoon, ", "Good Evening, "];
     let statement = "";
     let timeToday = new Date();
+    let uniqueKeys = "nameInp" + localStorage.length;   //automatically create keys
     //get individual values.
     let hr = timeToday.getHours();
 
-    if (hr < 12) {
+    if (hr >= 0 && hr < 12) {
         statement = timeGreet[0];
     }
-    else if (hr >= 12 || hr < 6) {
+    if (hr >= 12 && hr < 18) {
         statement = timeGreet[1];
     }
-    else {
+    if (hr >= 18 && hr < 23) {
         statement = timeGreet[2];
     }
 
@@ -38,9 +40,12 @@ function greet() {
         if (document.getElementById("name").value === "") {
             alert("Please enter your name.");
         }
-        introContainer.style.display = "none";
-        chronoDisp.style.display = "flex";
-        greetDisplay.innerHTML = statement + document.getElementById("name").value;
+        else {
+            window.localStorage.setItem(uniqueKeys, document.getElementById("name").value);  //store name locally
+            introContainer.style.display = "none";
+            chronoDisp.style.display = "flex";
+            greetDisplay.innerHTML = statement + window.localStorage.getItem(uniqueKeys);
+        }
     }
 }
 
@@ -67,8 +72,6 @@ function displayTime() {
     //Time display is in 24hr format.
     timeDisplay.innerHTML = hr + ':' + min + ':' + sec;
 }
-
-displayTime();
 
 function displayDate() {
     let todayDisp = document.getElementById("date");
@@ -100,7 +103,6 @@ function displayImg() {
             num = 0;    //refreshes num if reached limit.
         }
     }, 60000);  //loop for 60 seconds as per requirement
-
 }
 
 displayImg();
@@ -145,15 +147,18 @@ function addTask() {
     let newList = document.createElement("li");
     let taskInput = document.getElementById("task-input").value;
     let added = document.createTextNode(taskInput);
+    let uniqueKeys = "tasks" + localStorage.length;
     newList.appendChild(added);
+
+    window.localStorage.setItem(uniqueKeys, taskInput);    //store locally
+
     if (taskInput === "") {
         alert("Please Input your task.");
     }
     else {
         document.getElementById("task-lists").appendChild(newList);
     }
-    document.getElementById("task-input").value = "";
-
+    document.getElementById("task-input").value = "";   //refresh input
 
     let span = document.createElement("SPAN");
     let txt = document.createTextNode("\u00D7");
@@ -186,13 +191,12 @@ function displayQuotes() {
         if (currList === numQuotes) {
             currList = 0;
         }
-    }, 5000);
+    }, 60000);
 }
 
 displayQuotes();
 
 //-----------------End of script for displaying quotes------------------------//
-
 
 //*********************Script for dragging elements***************************//
 
@@ -207,7 +211,7 @@ function dragMove(id) {
     }
 }
 
-document.onmouseup = function(e) {
+document.onmouseup = function() {
     draggedElem = null; //stop following cursor after the mouse is not pressed
 }
 
@@ -222,3 +226,5 @@ document.onmousemove = function(e) {
 window.onload = dragMove;
 
 //----------------End of script for dragging elements----------------------//
+
+/*******************************END OF SCRIPT***************************** */
