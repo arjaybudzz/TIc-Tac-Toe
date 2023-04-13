@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta charset="utf-8"/>
+        <title>Tic Tac Toe</title>
+        <link rel="stylesheet" href= "tictacstylecop.css"/>
+        <link rel="stylesheet" href="mainmenu.css" />
+    </head>
+    <body>
+        <audio id="main-song" autoplay src="sounds/Lobby-Time.mp3" loop="loop" type="audio/mpeg"></audio>
+        <script defer type="module" src="tictacimplemscop.js"></script>
+        <div id="interface">
+            <div id="title">
+                <h1>TIC TAC TOE</h1>
+            </div>
+            <div id="selection">
+                <button id="one">1 Player</button>
+                <button id="two">2 Players</button>
+                <button id="options">Options</button>
+                <button id="help">Help</button>
+            </div>
+        </div>
+
+        <div id="piece-selection">
+            <div id="some-text">
+                <p id="select-your-piece">SELECT YOUR PIECE!</p>
+            </div>
+            <div id="pieces">
+                <button id="piece-one">X</button>
+                <button id="piece-two">O</button>
+            </div>
+            <div id="main-menu-cont">
+                <button id="return">Main Menu</button>
+            </div>
+        </div>
+
+        <div id="options-container">
+            <div>
+                <h1 id="options-text">OPTIONS</h1>
+            </div>
+            <div id="comp-level">
+                <span id="ai-level">Computer Level</span>
+                <button id="easy">Level 1</button>
+                <button id="difficult">Level 2</button>
+            </div>
+            <div id="sound-option">
+                <span id="background-sound">Background Music</span>
+                <button id="play">ON</button>
+                <button id="pause">OFF</button>
+            </div>
+            <div>
+                <button id="back-button">Back</button>
+            </div>
+        </div>
+
+        <div id="instructions-container">
+            <div id="instructions">
+                <p id="rules">
+                    Tic-Tac-Toe is a simple and fun game for 2 players, X and O. It is played on a 3x3 grid. Each player's goal is to make 3 in a row.
+
+                    Players take turns placing their Mark, X or O, on an open square in the grid. The first player to make 3 of their own mark in a row vertically, horizontally, or diagonally wins the game.
+
+                    If all 9 squares are filled and neither player has 3 in a row, the game is considered a Tie.
+                </p>
+            </div>
+            <div>
+                <button id="back-button2">Back</button>
+            </div>
+        </div>
+
+        <div id="wldcont">
+            <div id="wld">
+                <p id="wldtext">You Win!</p>
+                <div id="buttons">
+                    <button id="playagain">Play Again</button>
+                    <button id="mainmenu">Main Menu</button>
+                </div>
+                <div id="move-history-container">
+                    <button id="move-history">View History</button>
+                </div>
+            </div>
+        </div>
+
+        <div id="main-interface">
+            <div class="triangle-right"></div>
+            <div id="menu">
+                <button id="redo">Redo</button>
+                <button id="undo">Undo</button>
+                <button id="restart">Restart</button>
+            </div>
+            <div id="playground">
+                <div class="squares"></div>
+                <div class="squares"></div>
+                <div class="squares"></div>
+                <div class="squares"></div>
+                <div class="squares"></div>
+                <div class="squares"></div>
+                <div class="squares"></div>
+                <div class="squares"></div>
+                <div class="squares"></div>
+            </div>
+            <div id="player-turn">
+                <p id="player-turn-text"></p>
+            </div>
+        </div>
+    </body>
+</html>

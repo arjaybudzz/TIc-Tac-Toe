@@ -1,0 +1,347 @@
+body {
+    width: 100%;
+    height: auto;
+}
+
+#interface {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-image: url(images/tic-tac-toe-seamless-background-on-dark-blue-illustration-vector.jpg);
+}
+
+#title {
+    font-size: 80px;
+    font-family:cursive;
+    margin: 0;
+}
+
+h1 {
+    margin: 0;
+    animation-name: change-color;
+    animation-duration: 15s;
+    animation-iteration-count: 9999;
+    color: red;
+}
+
+@keyframes change-color {
+    0% {color: red;}
+    14.28% {color: orange;}
+    28.56% {color: yellow;}
+    42.84% {color: green;}
+    57.12% {color: blue;}
+    71.40% {color: indigo;}
+    85.68% {color: violet;}
+    100.00% {color: red;}
+}
+
+#selection {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#one, #two, #options, #help {
+    width: 250px;
+    height: 70px;
+    font-size: 30px;
+    margin: 10px;
+    border: none;
+    background-color: silver;
+    font-family: cursive;
+}
+
+#one:hover, #two:hover, #options:hover, #help:hover {
+    background-color: rgb(232, 232, 232);
+    cursor: pointer;
+}
+
+#piece-selection {
+    display: none;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-image: url(images/tic-tac-toe-seamless-background-on-dark-blue-illustration-vector.jpg);
+}
+
+#some-text {
+    font-size: 100px;
+    color: white;
+    font-family:cursive;
+    margin-bottom:260px;
+}
+
+#pieces {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    position: fixed;
+    left: 0;
+    right: 0;
+}
+
+#select-your-piece {
+    margin: 30px;
+    animation-name: change-size;
+    animation-duration: 3s;
+    animation-iteration-count: 9999;
+}
+
+@keyframes change-size {
+    0% {font-size: 105px;}
+    50% {font-size: 115px;}
+    100% {font-size: 105px;}
+}
+
+#piece-one, #piece-two {
+    width: 300px;
+    height: 300px;
+    font-size: 200px;
+    border: none;
+    color: white;
+    font-family: cursive;
+}
+
+#piece-one {
+    background-color: green;
+}
+
+#piece-one:active {
+    background-color: rgb(0, 200, 0);
+}
+
+#piece-two {
+    background-color: red;
+}
+
+#piece-two:active {
+    background-color: rgb(255, 100, 100);
+}
+
+#piece-one:hover, #piece-two:hover, #return:hover {
+    cursor: pointer;
+    box-shadow: 0 0 50px rgb(207, 207, 207);
+}
+
+#return {
+    width: 300px;
+    height: 70px;
+    background-color: blue;
+    font-size: 30px;
+    border: none;
+    color: white;
+    font-family: cursive;
+}
+
+#return:active {
+    background-color: rgb(100, 100, 255);
+}
+
+#who-moves-first {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-image: url(images/tic-tac-toe-seamless-background-on-dark-blue-illustration-vector.jpg);
+}
+
+#question {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 100px;
+    color: white;
+    animation-name: change-size;
+    animation-duration: 3s;
+    animation-iteration-count: 9999;
+}
+
+#selection-buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+}
+
+#player, #computer, #random {
+    width: 250px;
+    height: 100px;
+    margin: 30px;
+    font-size: 37px;
+    color: white;
+    border: none;
+}
+
+#player:hover, #computer:hover, #random:hover {
+    cursor: pointer;
+    box-shadow: 0 0 50px rgb(207, 207, 207);
+}
+
+#player {
+    background-color: green;
+}
+
+#player:active {
+    background-color: rgb(0, 200, 0);
+}
+
+#computer {
+    background-color: red;
+}
+
+#computer:active {
+    background-color: rgb(255, 100, 100);
+}
+
+#random {
+    background-color: blue;
+}
+
+#random:active {
+    background-color: rgb(100, 100, 255);
+}
+
+
+#options-container {
+    display: none;
+    flex-direction: column;
+    position: fixed;
+    justify-content: center;
+    align-items: center;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+#options-text {
+    font-size: 80px;
+}
+
+#ai-level {
+    font-size: 30px;
+    margin-right: 100px;
+    color: white;
+}
+
+#easy, #difficult {
+    width: 200px;
+    height: 50px;
+    font-size: 25px;
+    color: white;
+    border: none;
+}
+
+#easy, #play {
+    background-color: green;
+}
+
+#difficult, #pause {
+    background-color: red;
+}
+
+#play, #pause {
+    width: 200px;
+    height: 50px;
+    margin-top: 40px;
+    font-size: 25px;
+    border: none;
+    color: white;
+}
+
+#background-sound {
+    font-size: 30px;
+    margin-right: 65px;
+    color: white;
+}
+
+
+#back-button {
+    width: 200px;
+    height: 40px;
+    margin-top: 40px;
+    font-size: 20px;
+    border: none;
+    background-color: blue;
+    color: white;
+}
+
+
+
+#easy:hover, #difficult:hover, #play:hover, #pause:hover, #back-button:hover {
+    cursor: pointer;
+    background-color: yellow;
+    color: black;
+}
+
+#instructions-container {
+    display: none;
+    flex-direction: column;
+    position: fixed;
+    justify-content: center;
+    align-items: center;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 10000;
+}
+
+#instructions {
+    padding-top: 70px;
+    padding-left: 200px;
+    padding-right: 200px;
+    font-size: 30px;
+    color: white;
+    font-family: cursive;
+}
+
+#back-button2 {
+    width: 200px;
+    height: 40px;
+    margin-top: 40px;
+    font-size: 20px;
+    border: none;
+    background-color: blue;
+    color: white;
+}
+
+#back-button2:hover {
+    cursor: pointer;
+    background-color: yellow;
+    color: black;
+}
+
+#player-turn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 670px;
+    z-index: 1000000;
+
+}
+
+#player-turn-text {
+    color: white;
+    font-size: 30px;
+    font-family: cursive;
+}
