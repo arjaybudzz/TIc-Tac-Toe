@@ -185,37 +185,23 @@ function checkDiagonal(piece, piece2) {
         let randFunc = Math.floor(Math.random() * 2);
         switch(randFunc) {
             case 0:
-                if (board[2][0].innerHTML === "") {
-                    board[2][0].innerHTML = piece2;
-                    otherMoves.push([2, 0]);
-                    board[2][0].onclick = false;
-                }
-                if (board[1][1].innerHTML === "") {
-                    board[1][1].innerHTML = piece2;
-                    otherMoves.push([1, 1]);
-                    board[1][1].onclick = false;
-                }
-                if (board[0][2].innerHTML === "") {
-                    board[0][2].innerHTML = piece2;
-                    otherMoves.push([0, 2]);
-                    board[0][2].onclick = false;
+                for (let i = 0; i < 3; ++i) {
+                    if (board[i][2 - i].innerHTML === "") {
+                        board[i][2 - i].innerHTML = piece2;
+                        otherMoves.push([i, 2 - i]);
+                        board[i][2 - i].onclick = false;
+                        break;
+                    }
                 }
                 break;
             case 1:
-                if (board[0][0].innerHTML === "") {
-                    board[0][0].innerHTML = piece2;
-                    otherMoves.push([0, 0]);
-                    board[0][0].onclick = false;
-                }
-                if (board[1][1].innerHTML === "") {
-                    board[1][1].innerHTML = piece2;
-                    otherMoves.push([1, 1]);
-                    board[1][1].onclick = false;
-                }
-                if (board[2][2].innerHTML === "") {
-                    board[2][2].innerHTML = piece2;
-                    otherMoves.push([2, 2]);
-                    board[2][2].onclick = false;
+                for (let i = 0; i < 3; ++i) {
+                    if (board[i][i].innerHTML === "") {
+                        board[i][i].innerHTML = piece2;
+                        otherMoves.push([i, i]);
+                        board[i][i].onclick = false;
+                        break;
+                    }
                 }
                 break;
         }
