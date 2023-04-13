@@ -37,7 +37,7 @@ export function move(piece, piece2) {
 }
 
 export function twoPlayerMode(piece1, piece2) {
-    let currentPiece = piece1;
+
     if (readAllMoves.length === 0) {
         turnDisplay.innerHTML = "Player 1's turn.";
     }
@@ -45,23 +45,34 @@ export function twoPlayerMode(piece1, piece2) {
     for (let i = 0; i < 3; ++i) {
         for (let j = 0; j < 3; ++j) {
             board[i][j].onclick = () => {
-                board[i][j].innerHTML = currentPiece; //put your selected piece
-                readAllMoves.push(currentPiece);
+                board[i][j].innerHTML = piece1; //put your selected piece
                 board[i][j].onclick = false;  //you can't overwrite its value.
+                readAllMoves.push([i, j]);
+                yourMoves.push([i, j]);
+                console.log(yourMoves);
+                freeSquares();
+                checkWinner(piece1, "Player 1 Wins!");
                 //swap turns
-                if (currentPiece === piece1) {
-                    yourMoves.push([i, j]);
-                    currentPiece = piece2;
-                    checkWinner(piece1, "Player 1 Wins!");
-                    turnDisplay.innerHTML = "Player 2's turn.";
-                }
-                else {
-                    otherMoves.push([i, j]);
-                    currentPiece = piece1;
-                    checkWinner(piece2, "Player 2 Wins!");
-                    turnDisplay.innerHTML = "Player 1's turn.";
-                }
+                anotherPlayer(piece2, piece1);
+                turnDisplay.innerHTML = "Player 2's turn.";
             };
+        }
+    }
+}
+
+function anotherPlayer(piece, piece2) {
+    for (let i = 0; i < 3; ++i) {
+        for (let j = 0; j < 3; ++j) {
+            board[i][j].onclick = () => {
+                board[i][j].innerHTML = piece;
+                board[i][j].onclick = false;
+                readAllMoves.push(piece);
+                otherMoves.push([i, j]);
+                console.log(otherMoves);
+                freeSquares();
+                twoPlayerMode(piece2, piece);
+                turnDisplay.innerHTML = "Player 1's turn.";
+            }
         }
     }
 }
@@ -156,6 +167,9 @@ export function reset(piece, piece2) {
     let resetButton = document.getElementById("restart");
 
     resetButton.onclick = () => {
+        for (let i = 0; i < readAllMoves.length; ++i) {
+            readAllMoves.pop();
+        }
         clearBoard();
         move(piece, piece2);
     }
@@ -206,6 +220,7 @@ export function undo(piece1, piece2) {
             board[yourMoves[yourMoves.length - 1][0]][yourMoves[yourMoves.length - 1][1]].innerHTML = "";
             discardedMoves.push([yourMoves[yourMoves.length - 1][0], yourMoves[yourMoves.length - 1][1]]);
             yourMoves.pop();
+            readAllMoves.pop();
         }
         else {
             board[yourMoves[yourMoves.length - 1][0]][yourMoves[yourMoves.length - 1][1]].innerHTML = "";
@@ -214,6 +229,8 @@ export function undo(piece1, piece2) {
             otherDiscardedMoves.push([otherMoves[otherMoves.length - 1][0], otherMoves[otherMoves.length - 1][1]]);
             yourMoves.pop();
             otherMoves.pop();
+            readAllMoves.pop();
+            readAllMoves.pop();
         }
         move(piece1, piece2);
     }
@@ -229,21 +246,29 @@ export function undoForTwoPlayers(piece1, piece2) {
             board[yourMoves[yourMoves.length - 1][0]][yourMoves[yourMoves.length - 1][1]].innerHTML = "";
             discardedMoves.push([yourMoves[yourMoves.length - 1][0], yourMoves[yourMoves.length - 1][1]]);
             yourMoves.pop();
+            readAllMoves.pop();
         }
-        else {
+        else if (yourMoves.length === otherMoves.length){
             board[yourMoves[yourMoves.length - 1][0]][yourMoves[yourMoves.length - 1][1]].innerHTML = "";
             board[otherMoves[otherMoves.length - 1][0]][otherMoves[otherMoves.length - 1][1]].innerHTML = "";
             discardedMoves.push([yourMoves[yourMoves.length - 1][0], yourMoves[yourMoves.length - 1][1]]);
             otherDiscardedMoves.push([otherMoves[otherMoves.length - 1][0], otherMoves[otherMoves.length - 1][1]]);
             yourMoves.pop();
             otherMoves.pop();
+            readAllMoves.pop();
+            readAllMoves.pop();
         }
         twoPlayerMode(piece1, piece2);
+        console.log(yourMoves);
+        console.log(otherMoves);
+        console.log("Discarded Moves: ");
+        console.log(discardedMoves);
+        console.log(otherDiscardedMoves);
+        console.log("\n");
     }
 }
 
 export function clearBoard() {
-
     for (let i = 0; i < readAllMoves.length; ++i) {
         readAllMoves.pop();
     }
@@ -284,15 +309,12 @@ export function redo(piece1, piece2) {
 export function redoForTwoPlayers(piece1, piece2) {
     let redoButton = document.getElementById("redo");
     redoButton.onclick = () => {
-        if (discardedMoves.length === 0 || otherDiscardedMoves.length === 0) {
-            alert("Reached redo limit!");
-        }
-        if ((discardedMoves.length > otherDiscardedMoves.length) || discardedMoves.length === 1) {
+        if ((discardedMoves.length > otherDiscardedMoves.length) && (discardedMoves.length === 1)) {
             board[discardedMoves[discardedMoves.length - 1][0]][discardedMoves[discardedMoves.length - 1][1]].innerHTML = piece1;
             yourMoves.push([discardedMoves[discardedMoves.length - 1][0], discardedMoves[discardedMoves.length - 1][1]]);
             discardedMoves.pop();
         }
-        else {
+        else if ((discardedMoves.length > otherDiscardedMoves.length) && (otherDiscardedMoves.length > 0)) {
             board[discardedMoves[discardedMoves.length - 1][0]][discardedMoves[discardedMoves.length - 1][1]].innerHTML = piece1;
             board[otherDiscardedMoves[otherDiscardedMoves.length - 1][0]][otherDiscardedMoves[otherDiscardedMoves.length - 1][1]].innerHTML = piece2;
             yourMoves.push([discardedMoves[discardedMoves.length - 1][0], discardedMoves[discardedMoves.length - 1][1]]);
@@ -300,7 +322,16 @@ export function redoForTwoPlayers(piece1, piece2) {
             discardedMoves.pop();
             otherDiscardedMoves.pop();
         }
+        else if (discardedMoves.length === 0 || otherDiscardedMoves.length === 0) {
+            alert("Reached redo limit!");
+        }
         twoPlayerMode(piece1, piece2);
+        console.log(yourMoves);
+        console.log(otherMoves);
+        console.log("Discarded Moves: ");
+        console.log(discardedMoves);
+        console.log(otherDiscardedMoves);
+        console.log("\n");
     }
 }
 

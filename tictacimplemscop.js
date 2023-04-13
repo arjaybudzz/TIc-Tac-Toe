@@ -17,7 +17,7 @@ let playGround = document.getElementById("main-interface");
 let quitButton = document.getElementById("mainmenu");
 let declareWinner = document.getElementById("wldcont");
 
-let returnButton = document.getElementById("return");
+
 
 let easyAI = document.getElementById("easy");
 let difficultAI = document.getElementById("difficult");
@@ -154,6 +154,8 @@ window.onload = () => {
         initialVolume += 0.005;
     }, 1000);
 }
+
+let returnButton = document.getElementById("return");
 
 returnButton.onclick = () => {
     mainMenu.style.display = "flex";

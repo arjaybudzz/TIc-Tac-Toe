@@ -947,7 +947,9 @@ function checkWinner(piece, message) {
 //restart button
 export function resetDifficultMode(piece, piece2) {
     let resetButton = document.getElementById("restart");
-
+    for (let i = 0; i < readAllMoves.length; ++i) {
+        readAllMoves.pop();
+    }
     resetButton.onclick = () => {
         clearBoard();
         diffMode(piece, piece2);
