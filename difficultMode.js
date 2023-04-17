@@ -1,3 +1,6 @@
+
+import { showHistory } from "./tictacfuncscop.js";
+
 let board = [];
 
 let square = document.getElementsByClassName("squares");

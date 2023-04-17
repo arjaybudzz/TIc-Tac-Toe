@@ -216,13 +216,14 @@ export function undo(piece1, piece2) {
         if (yourMoves.length === 0 || otherMoves.length === 0) {
             alert("Reached undo limit!");
         }
+
         if (yourMoves.length > otherMoves.length) {
             board[yourMoves[yourMoves.length - 1][0]][yourMoves[yourMoves.length - 1][1]].innerHTML = "";
             discardedMoves.push([yourMoves[yourMoves.length - 1][0], yourMoves[yourMoves.length - 1][1]]);
             yourMoves.pop();
             readAllMoves.pop();
         }
-        else {
+        else if (yourMoves.length === otherMoves.length) {
             board[yourMoves[yourMoves.length - 1][0]][yourMoves[yourMoves.length - 1][1]].innerHTML = "";
             board[otherMoves[otherMoves.length - 1][0]][otherMoves[otherMoves.length - 1][1]].innerHTML = "";
             discardedMoves.push([yourMoves[yourMoves.length - 1][0], yourMoves[yourMoves.length - 1][1]]);
@@ -233,6 +234,12 @@ export function undo(piece1, piece2) {
             readAllMoves.pop();
         }
         move(piece1, piece2);
+        console.log(yourMoves);
+        console.log(otherMoves);
+        console.log("Discarded Moves: ");
+        console.log(discardedMoves);
+        console.log(otherDiscardedMoves);
+        console.log("\n");
     }
 }
 
@@ -289,6 +296,34 @@ export function redo(piece1, piece2) {
         if (discardedMoves.length === 0 || otherDiscardedMoves.length === 0) {
             alert("Reached redo limit!");
         }
+
+        if ((discardedMoves.length > otherDiscardedMoves.length) || (discardedMoves.length === 1)) {
+            board[discardedMoves[discardedMoves.length - 1][0]][discardedMoves[discardedMoves.length - 1][1]].innerHTML = piece1;
+            yourMoves.push([discardedMoves[discardedMoves.length - 1][0], discardedMoves[discardedMoves.length - 1][1]]);
+            discardedMoves.pop();
+            readAllMoves.push(piece1);
+        }
+
+        else {
+            board[discardedMoves[discardedMoves.length - 1][0]][discardedMoves[discardedMoves.length - 1][1]].innerHTML = piece1;
+            board[otherDiscardedMoves[otherDiscardedMoves.length - 1][0]][otherDiscardedMoves[otherDiscardedMoves.length - 1][1]].innerHTML = piece2;
+            yourMoves.push([discardedMoves[discardedMoves.length - 1][0], discardedMoves[discardedMoves.length - 1][1]]);
+            otherMoves.push([otherDiscardedMoves[otherDiscardedMoves.length - 1][0], otherDiscardedMoves[otherDiscardedMoves.length - 1][1]]);
+            discardedMoves.pop();
+            otherDiscardedMoves.pop();
+        }
+
+        move(piece1, piece2);
+    }
+}
+
+export function redoForTwoPlayers(piece1, piece2) {
+    let redoButton = document.getElementById("redo");
+    redoButton.onclick = () => {
+        if (discardedMoves.length === 0 || otherDiscardedMoves.length === 0) {
+            alert("Reached redo limit!");
+        }
+
         if ((discardedMoves.length > otherDiscardedMoves.length) || (discardedMoves.length === 1)) {
             board[discardedMoves[discardedMoves.length - 1][0]][discardedMoves[discardedMoves.length - 1][1]].innerHTML = piece1;
             yourMoves.push([discardedMoves[discardedMoves.length - 1][0], discardedMoves[discardedMoves.length - 1][1]]);
@@ -302,29 +337,7 @@ export function redo(piece1, piece2) {
             discardedMoves.pop();
             otherDiscardedMoves.pop();
         }
-        move(piece1, piece2);
-    }
-}
 
-export function redoForTwoPlayers(piece1, piece2) {
-    let redoButton = document.getElementById("redo");
-    redoButton.onclick = () => {
-        if ((discardedMoves.length > otherDiscardedMoves.length) && (discardedMoves.length === 1)) {
-            board[discardedMoves[discardedMoves.length - 1][0]][discardedMoves[discardedMoves.length - 1][1]].innerHTML = piece1;
-            yourMoves.push([discardedMoves[discardedMoves.length - 1][0], discardedMoves[discardedMoves.length - 1][1]]);
-            discardedMoves.pop();
-        }
-        else if ((discardedMoves.length > otherDiscardedMoves.length) && (otherDiscardedMoves.length > 0)) {
-            board[discardedMoves[discardedMoves.length - 1][0]][discardedMoves[discardedMoves.length - 1][1]].innerHTML = piece1;
-            board[otherDiscardedMoves[otherDiscardedMoves.length - 1][0]][otherDiscardedMoves[otherDiscardedMoves.length - 1][1]].innerHTML = piece2;
-            yourMoves.push([discardedMoves[discardedMoves.length - 1][0], discardedMoves[discardedMoves.length - 1][1]]);
-            otherMoves.push([otherDiscardedMoves[otherDiscardedMoves.length - 1][0], otherDiscardedMoves[otherDiscardedMoves.length - 1][1]]);
-            discardedMoves.pop();
-            otherDiscardedMoves.pop();
-        }
-        else if (discardedMoves.length === 0 || otherDiscardedMoves.length === 0) {
-            alert("Reached redo limit!");
-        }
         twoPlayerMode(piece1, piece2);
         console.log(yourMoves);
         console.log(otherMoves);
